@@ -3,9 +3,11 @@ const menuRouter = require("./src/routes/menuRouters");
 const app = express();
 const mongoose = require("mongoose");
 const adminRouter = require("./src/routes/adminRoutes");
+const reservationRouter = require("./src/routes/reservationRoutes");
+const orderRouter = require("./src/routes/orderRoutes");
 
 app.use(express.json());
-app.use(menuRouter);
+app.use(menuRouter, orderRouter, reservationRouter);
 app.use("/admin", adminRouter);
 (async () => {
   try {
