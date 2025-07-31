@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const adminRouter = require("./src/routes/adminRoutes");
 const reservationRouter = require("./src/routes/reservationRoutes");
 const orderRouter = require("./src/routes/orderRoutes");
+require("dotenv").config();
+const username = process.env.DATABASE_USERNAME;
+const password = process.env.DATABASE_PASS;
 
 app.use(express.json());
 app.use(menuRouter, orderRouter, reservationRouter);
@@ -12,7 +15,7 @@ app.use("/admin", adminRouter);
 (async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://ghusharib:allied11m@cluster0.y3gibzq.mongodb.net/"
+     ` mongodb+srv://${username}:${password}@cluster0.y3gibzq.mongodb.net/`
     );
     console.log("DB connected!");
   } catch (error) {
